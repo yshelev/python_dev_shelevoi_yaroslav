@@ -20,8 +20,8 @@ class Log(BaseLogModel):
 	id = PrimaryKeyField()
 	datetime = DateField()
 	user_id = IntegerField()
-	space_type_id = ForeignKeyField(SpaceType, related_name='id')
-	event_type_id = ForeignKeyField(EventType, related_name='id')
+	space_type_id = ForeignKeyField(SpaceType, backref='SpaceType.id')
+	event_type_id = ForeignKeyField(EventType, backref='EventType.id')
 
 
 # AUTHORS DATABASE CLASSES
@@ -38,14 +38,14 @@ class User(BaseAuthorModel):
 
 class Blog(BaseAuthorModel):
 	id = PrimaryKeyField()
-	owner_id = ForeignKeyField(User, related_name='id')
+	owner_id = ForeignKeyField(User, backref='User.id')
 	name = CharField()
 	description = CharField()
 
 
 class Post(BaseAuthorModel):
 	id = PrimaryKeyField()
-	author_id = ForeignKeyField(User, related_name='id')
+	author_id = ForeignKeyField(User, backref='User.id')
 	header = TextField()
 	text = TextField()
-	blog_id = ForeignKeyField(Blog, related_name='id')
+	blog_id = ForeignKeyField(Blog, backref='Blog.id')
