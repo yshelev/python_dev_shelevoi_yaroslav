@@ -1,14 +1,29 @@
 from source.constants.cases import CASES
 from peewee import fn
 
-from source.scripts.models import Log, SpaceType, EventType, Comment, User, Post
+from source.scripts.services.optimize_services import (
+	get_sql_logs_from_user,
+	get_sql_comments_from_user,
+)
+
+from source.scripts.models import (
+	Log,
+	SpaceType,
+	EventType,
+	Comment,
+	User,
+	Post
+)
 
 def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
 	check_on_event_type_equal_login = CASES["EVENT_TYPE"]["EQUAL_LOGIN"]
 	check_on_event_type_equal_logout = CASES["EVENT_TYPE"]["EQUAL_LOGOUT"]
 	check_on_space_type_equal_blog = CASES["SPACE_TYPE"]["EQUAL_BLOG"]
+
+	optimized_logs = get_sql_logs_from_user(user_id)
+
 	return (
-        Log
+        optimized_logs
         .select(
             Log.datetime.alias("date"),
             fn.SUM(check_on_event_type_equal_login).alias("login_count"),
@@ -18,7 +33,6 @@ def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
         .join(SpaceType)
         .switch(Log)
         .join(EventType)
-        .where(Log.user_id == user_id)
         .group_by(Log.datetime)
         .order_by(Log.datetime)
 		.dicts()
@@ -26,8 +40,11 @@ def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
 
 
 def get_dict_quantity_of_comments_in_post(user_id: int):
+
+	optimized_comments = get_sql_comments_from_user(user_id)
+
 	return (
-		Comment
+		optimized_comments
 		.select(
 			User.login.alias("post_author_login"),
 			Post.header.alias("header"),
@@ -35,8 +52,6 @@ def get_dict_quantity_of_comments_in_post(user_id: int):
 		)
 		.join(Post)
 		.join(User)
-		.switch(Post)
-		.where(Comment.author_id == user_id)
 		.group_by(Post.id)
 		.dicts()
 	)
