@@ -1,11 +1,9 @@
-from scripts.models import *
+from scripts.scripts.models import *
 from flask import Flask, request
 
-from scripts.services import (
-    get_sql_count_of_logins_logouts_and_blog_activities_by_date,
-    create_connection,
-    discard_connection,
-    get_sql_quantity_of_comments_in_post
+from scripts.scripts.services import (
+    get_dict_count_of_logins_logouts_and_blog_activities_by_date,
+    get_dict_quantity_of_comments_in_post
 )
 
 app = Flask(__name__)
@@ -14,11 +12,11 @@ app = Flask(__name__)
 def comments_of_user():
     username = request.args.get("username")
 
-    create_connection(authors_db)
+    authors_db_manager.create_connection()
     user = User.get(User.login == username)
 
-    sql_output = get_sql_quantity_of_comments_in_post(user.id)
-    discard_connection(authors_db)
+    sql_output = get_dict_quantity_of_comments_in_post(user.id)
+    authors_db_manager.drop_connection()
 
     print(sql_output)
 
@@ -34,13 +32,13 @@ def comments_of_user():
 def general_info_about_user():
     username = request.args.get("username")
 
-    create_connection(authors_db)
+    authors_db_manager.create_connection()
     user = User.get(User.login == username)
-    discard_connection(authors_db)
+    authors_db_manager.drop_connection()
 
-    create_connection(logs_db)
-    sql_output = get_sql_count_of_logins_logouts_and_blog_activities_by_date(user.id)
-    discard_connection(logs_db)
+    logs_db_manager.create_connection()
+    sql_output = get_dict_count_of_logins_logouts_and_blog_activities_by_date(user.id)
+    logs_db_manager.drop_connection()
 
     final_output = [{
         "date": log['date'],
