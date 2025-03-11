@@ -1,7 +1,7 @@
-from scripts.constants.cases import CASES
+from source.constants.cases import CASES
 from peewee import fn
 
-from scripts.scripts.models import Log, SpaceType, EventType, Comment, User, Post
+from source.scripts.models import Log, SpaceType, EventType, Comment, User, Post
 
 def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
 	check_on_event_type_equal_login = CASES["EVENT_TYPE"]["EQUAL_LOGIN"]

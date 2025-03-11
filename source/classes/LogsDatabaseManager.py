@@ -1,8 +1,8 @@
 from peewee import SqliteDatabase
 
-from scripts.constants.constants import LOGS_PATH
+from source.constants.constants import LOGS_PATH
 
-from scripts.classes.DatabaseManager import DatabaseManager
+from source.classes.DatabaseManager import DatabaseManager
 
 
 

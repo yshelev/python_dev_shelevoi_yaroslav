@@ -1,7 +1,7 @@
-from scripts.scripts.models import *
+from source.scripts.models import *
 from flask import Flask, request
 
-from scripts.scripts.services import (
+from source.scripts.services import (
     get_dict_count_of_logins_logouts_and_blog_activities_by_date,
     get_dict_quantity_of_comments_in_post
 )
