@@ -49,3 +49,9 @@ class Post(BaseAuthorModel):
 	header = TextField()
 	text = TextField()
 	blog_id = ForeignKeyField(Blog, backref='Blog.id')
+
+class Comment(BaseAuthorModel):
+	id = PrimaryKeyField()
+	author_id = ForeignKeyField(User, backref='User.id')
+	post_id = ForeignKeyField(Post, backref='Blog.id')
+	text = TextField()
