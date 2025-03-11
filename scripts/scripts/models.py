@@ -1,10 +1,10 @@
 from peewee import *
-from .databases import logs_db, authors_db
+from .databases import logs_db_manager, authors_db_manager
 
 # LOGS DATABASE CLASSES
 class BaseLogModel(Model):
 	class Meta:
-		database = logs_db
+		database = logs_db_manager.get_database_instance()
 
 class SpaceType(BaseLogModel):
 	id = PrimaryKeyField()
@@ -27,7 +27,7 @@ class Log(BaseLogModel):
 # AUTHORS DATABASE CLASSES
 class BaseAuthorModel(Model):
 	class Meta:
-		database = authors_db
+		database = authors_db_manager.get_database_instance()
 
 
 class User(BaseAuthorModel):

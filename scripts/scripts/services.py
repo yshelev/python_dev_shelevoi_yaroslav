@@ -1,22 +1,7 @@
-from .constants import CASES
-from peewee import fn, SqliteDatabase
+from scripts.constants.cases import CASES
+from peewee import fn
 
-from scripts.models import Log, SpaceType, EventType, Comment, User, Post
-
-
-def create_connection(table: SqliteDatabase) -> bool:
-	try:
-		table.connect()
-		return True
-	except Exception as e:
-		return False
-
-def discard_connection(table: SqliteDatabase) -> bool:
-	try:
-		table.close()
-		return True
-	except Exception as e:
-		return False
+from scripts.scripts.models import Log, SpaceType, EventType, Comment, User, Post
 
 def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
 	check_on_event_type_equal_login = CASES["EVENT_TYPE"]["EQUAL_LOGIN"]
