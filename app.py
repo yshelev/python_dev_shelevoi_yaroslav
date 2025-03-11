@@ -6,6 +6,10 @@ from source.scripts.services.main_services import (
     get_dict_quantity_of_comments_in_post
 )
 
+from source.scripts.services.connection_services import (
+    create_connection_with_two_databases,
+    drop_connection_with_two_databases
+)
 app = Flask(__name__)
 
 @app.route("/api/comments", methods=['GET'])
@@ -29,14 +33,13 @@ def comments_of_user():
 @app.route("/api/general", methods=['GET'])
 def general_info_about_user():
     username = request.args.get("username")
+    create_connection_with_two_databases()
 
-    authors_db_manager.create_connection()
     user = User.get(User.login == username)
-    authors_db_manager.drop_connection()
 
-    logs_db_manager.create_connection()
     sql_output = get_dict_count_of_logins_logouts_and_blog_activities_by_date(user.id)
-    logs_db_manager.drop_connection()
+
+    drop_connection_with_two_databases()
 
     final_output = [{
         "date": log['date'],
