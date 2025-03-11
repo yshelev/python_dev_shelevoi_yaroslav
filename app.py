@@ -1,7 +1,7 @@
 from source.scripts.models import *
 from flask import Flask, request
 
-from source.scripts.services import (
+from source.scripts.services.main_services import (
     get_dict_count_of_logins_logouts_and_blog_activities_by_date,
     get_dict_quantity_of_comments_in_post
 )
@@ -17,8 +17,6 @@ def comments_of_user():
 
     sql_output = get_dict_quantity_of_comments_in_post(user.id)
     authors_db_manager.drop_connection()
-
-    print(sql_output)
 
     final_output = [{
         "login": user.login,
