@@ -11,6 +11,7 @@ api/general
 ## Содержание
 - [Технологии](#технологии)
 - [Использование](#использование)
+- [Сравнение с ТЗ](#нововведения)
 - [Команда проекта](#команда-проекта)
 
 ## Технологии
@@ -38,12 +39,29 @@ api/general
 	 logs_database="your_logs_db_filename"
 	 authors_database="your_authors_db_filename"
 	 ```
+	 В папке scripts/databases уже находятся две БД с примерами данных. 
 4. Запустите сервер:
 	```sh
 	 python app.py 
 	 ```
 
+## Нововведения 
+По сравнению с ТЗ, ввел еще одну таблицу в базе данных - comment. 
+Команда создания: 
+```sql
+CREATE TABLE "comment" (
+	"id"	INTEGER NOT NULL,
+	"author_id"	INTEGER NOT NULL,
+	"post_id"	INTEGER NOT NULL,
+	"text"	TEXT NOT NULL,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("author_id") REFERENCES "user"("id"),
+	FOREIGN KEY("post_id") REFERENCES "post"("id")
+);
+ ```
+
+
 ## Команда проекта
 
 
-- [Шелевой Ярослав](https://github.com/yshelev) — Backend Engineer
+- [Шелевой Ярослав](https://github.com/yshelev) — Backend developer
