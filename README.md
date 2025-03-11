@@ -15,7 +15,7 @@ api/general
 - [Команда проекта](#команда-проекта)
 
 ## Технологии
-- [Flask](https://flask.palletsprojects.com/). Данный фреймворка использован для создания API 
+- [Flask](https://flask.palletsprojects.com/). Данный фреймворк использован для создания API 
 - [peewee](https://docs.peewee-orm.com/). Данная библиотека использована для  работы с БД при помощи технологии ORM
 
 ## Использование
