@@ -1,6 +1,6 @@
 from peewee import Case
 
-from scripts.models import EventType, SpaceType
+from scripts.scripts.models import EventType, SpaceType
 
 CASES = {
 	"EVENT_TYPE": {
