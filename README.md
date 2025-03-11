@@ -22,7 +22,7 @@ api/general
  1. Склонируйте репозиторий: 
 	 ```sh
 	 git clone https://github.com/yshelev/python_dev_shelevoi_yaroslav.git
-	 cd https://github.com/yshelev/python_dev_shelevoi_yaroslav.git
+	 cd python_dev_shelevoi_yaroslav
 	 ```
  2. Создайте и активируйте виртуальное окружение: 
 	 ```sh
