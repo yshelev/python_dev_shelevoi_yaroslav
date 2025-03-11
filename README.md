@@ -46,4 +46,4 @@ api/general
 ## Команда проекта
 
 
-- [Шелевой Ярослав](https://github.com/yshelev) — Front-End Engineer
+- [Шелевой Ярослав](https://github.com/yshelev) — Backend Engineer
