@@ -5,7 +5,7 @@
 api/comments
 api/general
 ```
-Оба в качестве get-параметра принимают login пользователя, по которому затем достают выданную в ТЗ информацию и отдают ее в формате JSON пользователю
+Оба в качестве get-параметра принимают login пользователя, по которому затем достают описаную в ТЗ информацию и отдают ее в формате JSON пользователю
  
 
 ## Содержание
@@ -15,14 +15,14 @@ api/general
 - [Команда проекта](#команда-проекта)
 
 ## Технологии
-- [Flask](https://flask.palletsprojects.com/). Данный фреймворка использован для создания API 
+- [Flask](https://flask.palletsprojects.com/). Данный фреймворк использован для создания API 
 - [peewee](https://docs.peewee-orm.com/). Данная библиотека использована для  работы с БД при помощи технологии ORM
 
 ## Использование
  1. Склонируйте репозиторий: 
 	 ```sh
 	 git clone https://github.com/yshelev/python_dev_shelevoi_yaroslav.git
-	 cd https://github.com/yshelev/python_dev_shelevoi_yaroslav.git
+	 cd python_dev_shelevoi_yaroslav
 	 ```
  2. Создайте и активируйте виртуальное окружение: 
 	 ```sh
