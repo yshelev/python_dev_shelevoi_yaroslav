@@ -15,7 +15,17 @@ from source.scripts.models import (
 	Post
 )
 
-def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
+def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int) -> list[dict]:
+	"""
+	get list of dicts with structure: {\n
+		"date": string\n
+		"login_count": int,\n
+		"logout_count": int,\n
+		"blog_activities_count": int
+	}
+	:param user_id:
+	:return:
+	"""
 	check_on_event_type_equal_login = CASES["EVENT_TYPE"]["EQUAL_LOGIN"]
 	check_on_event_type_equal_logout = CASES["EVENT_TYPE"]["EQUAL_LOGOUT"]
 	check_on_space_type_equal_blog = CASES["SPACE_TYPE"]["EQUAL_BLOG"]
@@ -39,8 +49,16 @@ def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int):
     )
 
 
-def get_dict_quantity_of_comments_in_post(user_id: int):
-
+def get_dict_quantity_of_comments_in_post(user_id: int) -> list[dict]:
+	"""
+	get list of dicts with structure: {\n
+		"post_author_login": string\n
+		"header": string,\n
+		"number_of_comments": int,
+	}
+	:param user_id:
+	:return:
+	"""
 	optimized_comments = get_sql_comments_from_user(user_id)
 
 	return (
