@@ -1,3 +1,6 @@
+from peewee import SqliteDatabase
+
+
 class DatabaseManager:
 	__database_instance = None
 	__path_to_database = None
@@ -14,5 +17,5 @@ class DatabaseManager:
 	def drop_connection(self):
 		self.__database_instance.close()
 
-	def get_database_instance(self):
+	def get_database_instance(self) -> SqliteDatabase:
 		return self.__database_instance
