@@ -2,8 +2,8 @@ from source.constants.cases import CASES
 from peewee import fn
 
 from source.scripts.services.optimize_services import (
-	get_sql_logs_from_user,
-	get_sql_comments_from_user,
+	get_logs_from_user,
+	get_comments_from_user,
 )
 
 from source.scripts.models import (
@@ -15,7 +15,7 @@ from source.scripts.models import (
 	Post
 )
 
-def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int) -> list[dict]:
+def get_general_data(user_id: int) -> list[dict]:
 	"""
 	get list of dicts with structure: {\n
 		"date": string\n
@@ -30,7 +30,7 @@ def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int) -
 	check_on_event_type_equal_logout = CASES["EVENT_TYPE"]["EQUAL_LOGOUT"]
 	check_on_space_type_equal_blog = CASES["SPACE_TYPE"]["EQUAL_BLOG"]
 
-	optimized_logs = get_sql_logs_from_user(user_id)
+	optimized_logs = get_logs_from_user(user_id)
 
 	return (
         optimized_logs
@@ -49,7 +49,7 @@ def get_dict_count_of_logins_logouts_and_blog_activities_by_date(user_id: int) -
     )
 
 
-def get_dict_quantity_of_comments_in_post(user_id: int) -> list[dict]:
+def get_comments_data(user_id: int) -> list[dict]:
 	"""
 	get list of dicts with structure: {\n
 		"post_author_login": string\n
@@ -59,7 +59,7 @@ def get_dict_quantity_of_comments_in_post(user_id: int) -> list[dict]:
 	:param user_id:
 	:return:
 	"""
-	optimized_comments = get_sql_comments_from_user(user_id)
+	optimized_comments = get_comments_from_user(user_id)
 
 	return (
 		optimized_comments

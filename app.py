@@ -2,8 +2,8 @@ from source.scripts.models import *
 from flask import Flask, request
 
 from source.scripts.services.main_services import (
-    get_dict_count_of_logins_logouts_and_blog_activities_by_date,
-    get_dict_quantity_of_comments_in_post
+    get_general_data,
+    get_comments_data
 )
 
 from source.scripts.services.connection_services import (
@@ -19,7 +19,7 @@ def comments_of_user():
     authors_db_manager.create_connection()
     user = User.get(User.login == username)
 
-    sql_output = get_dict_quantity_of_comments_in_post(user.id)
+    sql_output = get_comments_data(user.id)
     authors_db_manager.drop_connection()
 
     final_output = [{
@@ -37,7 +37,7 @@ def general_info_about_user():
 
     user = User.get(User.login == username)
 
-    sql_output = get_dict_count_of_logins_logouts_and_blog_activities_by_date(user.id)
+    sql_output = get_general_data(user.id)
 
     drop_connection_with_two_databases()
 
